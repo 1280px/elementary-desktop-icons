@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Run xfdesktop4 with wallpaper update script
+Name=Run xfdesktop4 with Wallpaper Update script
 Comment=/usr/local/xfdesktopWU.sh
 Exec=/usr/local/xfdesktopWU.sh
 Icon=preferences-desktop-wallpaper

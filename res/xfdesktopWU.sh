@@ -45,7 +45,8 @@ wpUpdate "$(gsettings get org.gnome.desktop.background picture-uri)" \
 gsettings monitor org.gnome.desktop.background |
     while read -r line; do
         # check for "picture-uri: ", "picture-options: " and "primary-color: " keys
-        if [[ "$line" =~ ^(picture-uri: |picture-options: |primary-color: ) ]]; then
+        if echo "$line" | grep -q -e "^picture-uri: " -e "^picture-options: " -e "^primary-color: "; then
+
             wpUpdate "$(gsettings get org.gnome.desktop.background picture-uri)" \
                      "$(gsettings get org.gnome.desktop.background picture-options)" \
                      "$(gsettings get org.gnome.desktop.background primary-color)"
