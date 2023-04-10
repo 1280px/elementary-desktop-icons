@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Run xfdesktop4 with wallpaper change fix script
+Comment=/usr/local/xfdesktopWPCF.sh
+Exec=/usr/local/xfdesktopWPCF.sh
+Icon=preferences-desktop-wallpaper
+Type=Application
+X-GNOME-Autostart-enabled=true
