@@ -15,7 +15,7 @@ main() {
     then
         echo "  FILE EXISTS, TRYING TO RESTORE WINDOWS..."
         # remember windows that were visible before the restoration routine
-        echo $(xdotool search --desktop "$currDesktop" --onlyvisible --name "")
+        currWindows=$(xdotool search --desktop "$currDesktop" --onlyvisible --name "")
 
         noWindowsFound=1
         while read -r line; do
@@ -27,10 +27,12 @@ main() {
             echo "    NO WINDOWS FOUND, RESTARTING THE SCRIPT..."
             main
         else
-            # push up all the windows that were active before the routine began
+            # push up all unmaximized windows that were active before the routine began
             echo "$currWindows" |
                 while read -r line; do
-                    if !(xprop -id "$line" | grep -q "_NET_WM_STATE_HIDDEN"); then
+                    if !((xprop -id "$line" | grep -q "_NET_WM_STATE_HIDDEN") \
+                        || (xprop -id "$line" | grep -q "_NET_WM_STATE_MAXIMIZED_HORZ, _NET_WM_STATE_MAXIMIZED_VERT")); then
+                        # use windowactivate because windowfocus doesn't always work, fsr
                         xdotool windowactivate "$line"
                     fi
                 done
