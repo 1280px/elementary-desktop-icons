@@ -1,8 +1,11 @@
+@define-color desktop-icon-labels mix(@accent_color_300, white, 0.8);
+@define-color desktop-icon-shadow mix(@accent_color_700, #777, 0.8);
+
 /* make icon labels bolder (inspired by Desktop Folder) */
 XfdesktopIconView.view {
-    font-family: 'Inter';
-    font-weight: bold;
-    text-shadow: 0 0 3px #777, 0 1px 2px #000;
+    color: @desktop-icon-labels;
+    font-family: 'Inter'; font-weight: bold;
+    text-shadow: 0 0 3px @desktop-icon-shadow, 0 1px 2px #333;
 }
 
 /* remove icons from context menu (to look consistent with Files) */
@@ -10,7 +13,7 @@ XfdesktopIconView.view {
     opacity: 0;
 }
 
-/* rounded selection box (disabled because doesn't render correctly)
+/* rounded selection box (may cause minor visual aftifacts) */
 XfdesktopIconView {
-    border-radius: 5px;
-} */
+    border-radius: 0.250000001rem;
+}
