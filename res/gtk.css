@@ -1,11 +1,11 @@
 @define-color desktop-icon-labels mix(@accent_color_300, @SILVER_100, 0.8);
-@define-color desktop-icon-shadow mix(@accent_color_700, @SILVER_700, 0.8);
+@define-color desktop-icon-shadow mix(@accent_color_900, @SILVER_700, 0.8);
 
 /* make icon labels bolder (inspired by Desktop Folder) */
 XfdesktopIconView.view {
     color: @desktop-icon-labels;
     font-family: 'Inter'; font-weight: bold;
-    text-shadow: 0 0 3px @desktop-icon-shadow, 0 1px 2px #333;
+    text-shadow: 0 0 3px @desktop-icon-shadow, 0 1px 2px #222;
 }
 
 /* remove icons from context menu (to look consistent with Files) */
