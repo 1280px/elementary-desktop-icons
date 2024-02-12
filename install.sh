@@ -9,14 +9,22 @@ if [[ "$yn" != "Y" && "$yn" != "y" ]]; then exit 1; fi
 
 
 
+# preserve file manager defaults to set them back after Thunar installation
+currInode=$(xdg-mime query default inode/directory)
+
 # install all required dependencies
-aptToInstall="xdotool xfdesktop4 thunar"    # (thunar is required for background services)
+aptToInstall="xdotool xfdesktop4 thunar"    # (Thunar is required for background services)
 echo -e "\n[i] Trying to install dependencies via apt: $aptToInstall"
 sudo apt install $aptToInstall -y
+
+# revert file manager defaults to ones before Thunar was installed
+xdg-mime default $currInode inode/directory
 
 # hide Thunar icons from Applications menu
 echo "NoDisplay=True" >> ~/.local/share/applications/thunar.desktop &&
 echo "NoDisplay=True" >> ~/.local/share/applications/thunar-bulk-rename.desktop
+
+
 
 # copy xfdesktop wallpaper updater and add its launcher to autorun for current user
 sudo cp res/xfdesktopWU.sh /usr/local/ && sudo chmod 777 /usr/local/xfdesktopWU.sh
@@ -48,7 +56,7 @@ read -e -p $'\nPlease select Show Desktop scheme you want to use:
     and work with newly-opened apps. Once you\'re done, activate it
     again to layer new windows you need on top of the old ones.
 [0] None -- do not install Show Desktop scheme.
-    This will not uninstall the scheme if it was already installed.
+    This will NOT uninstall the scheme if it was already installed.
 
 You will be able to change your scheme later by simply running
 install.sh again (it won\'t break anything!). Your choice: ' wl
@@ -74,7 +82,7 @@ if [[ "$wl" != "0" ]]; then
             then
                 echo "['$keystokesDPath/showDesktop/']" # for cases when no keystrokes exist
             else
-                echo "$(dconf read $keystokesDPath | sed "s#]#, '$keystokesDPath/showDesktop/']#")"
+                echo "$(dconf read $keystokesDPath | sed "s|]|, '$keystokesDPath/showDesktop/']|")"
             fi
         )"
     else
@@ -84,5 +92,4 @@ fi
 
 
 
-# done :DDDD
-notify-send "install.sh :: Done" "Installation finished! Please log out and log in again to apply the changes." -t 9999
+echo -e '\nInstallation finished! Please log out and log in again to apply the changes.'
