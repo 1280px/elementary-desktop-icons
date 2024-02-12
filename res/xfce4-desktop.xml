@@ -17,6 +17,9 @@
   </property>
   <property name="desktop-menu" type="empty">
     <property name="show" type="bool" value="false"/>
-    <property name="show-icons" type="bool" value="false"/>
+  </property>
+  <property name="backdrop" type="empty">
+    <property name="single-workspace-mode" type="bool" value="true"/>
+    <property name="single-workspace-number" type="int" value="0"/>
   </property>
 </channel>
