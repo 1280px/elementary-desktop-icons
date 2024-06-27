@@ -1,4 +1,4 @@
-@define-color desktop-icon-labels mix(@accent_color_300, @SILVER_100, 0.8);
+@define-color desktop-icon-labels mix(@accent_color_300, @SILVER_300, 0.8);
 @define-color desktop-icon-shadow mix(@accent_color_900, @SILVER_700, 0.8);
 
 /* make icon labels bolder (inspired by Desktop Folder) */
@@ -16,4 +16,24 @@ XfdesktopIconView.view {
 /* rounded selection box (may cause minor visual aftifacts) */
 XfdesktopIconView {
     border-radius: 0.250000001rem;
+}
+
+/* fix selection box colour and corner radius */
+.nemo-desktop .rubberband {
+    background-color: @selected_bg_color;
+    border-color: @selected_bg_color;
+    border-radius: 10px;
+    overflow: clip;
+}
+
+/* use theme-based colours for icon labels */
+.nemo-desktop.nemo-canvas-item {
+    color: @desktop-icon-labels;
+    text-shadow: 0 1px 3px @desktop-icon-shadow, 0 1px 2px #222;
+}
+.nemo-desktop.nemo-canvas-item:hover {
+    background-color: alpha(@desktop-icon-shadow, 0.3);
+}
+.nemo-desktop.nemo-canvas-item:selected {
+    background-color: alpha(@accent_color_900, 0.5);
 }

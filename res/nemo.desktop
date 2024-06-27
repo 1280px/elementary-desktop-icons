@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Start Nemo Desktop
+Comment=nemo-desktop
+Exec=nemo-desktop
+Icon=preferences-desktop-wallpaper
+Type=Application
+X-GNOME-Autostart-enabled=true

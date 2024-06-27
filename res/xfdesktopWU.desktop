@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=eOS-xfdesktop4
-Comment=Runs xfdesktop4 with Wallpaper Update script
+Name=Run xfdesktop4 with Wallpaper Update script
+Comment=/usr/local/xfdesktopWU.sh
 Exec=/usr/local/xfdesktopWU.sh
 Icon=preferences-desktop-wallpaper
 Type=Application
